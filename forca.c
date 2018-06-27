@@ -6,12 +6,22 @@ void abertura(){
     printf("	  / Jogo de Forca */				 \n");
     printf("/****************************************\n");
 }
+
+int parimpar(int numero){
+	if(numero%2==0){
+		return 1;
+	}else{
+		return 0;
+	}
+}
 int main() {
-  int i,j,acertou=0,enforcou=0,ttentativas=10,tentativa=0,achou,cont=0;
+  int ehpar=0,i,j,acertou=0,enforcou=0,ttentativas=10,tentativa=0,achou,cont=0;
   char palavrasecreta[20],chute;
   char chutes[tentativa];
   sprintf(palavrasecreta, "uber");
   abertura();
+  int resultado = parimpar(25);
+  printf("%d",resultado);
   do{
   	printf("\nQual e o seu palpite ?\n");
   	scanf(" %c",&chute);
