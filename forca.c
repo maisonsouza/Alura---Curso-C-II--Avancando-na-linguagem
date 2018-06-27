@@ -1,11 +1,17 @@
 #include <stdio.h>
 #include <string.h>
 
+void abertura(){
+	printf("/****************************************\n");
+    printf("	  / Jogo de Forca */				 \n");
+    printf("/****************************************\n");
+}
 int main() {
   int i,j,acertou=0,enforcou=0,ttentativas=10,tentativa=0,achou,cont=0;
   char palavrasecreta[20],chute;
   char chutes[tentativa];
   sprintf(palavrasecreta, "uber");
+  abertura();
   do{
   	printf("\nQual e o seu palpite ?\n");
   	scanf(" %c",&chute);
