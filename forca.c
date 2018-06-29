@@ -2,21 +2,24 @@
 #include <string.h>
 #include <math.h>
 
+  int tentativa=0,cont,achou,acertou=0;
+  char palavrasecreta[10],chutes[10];
+
 void abertura(){
 	printf("/****************************************\n");
     printf("	     / Jogo de Forca */				 \n");
     printf("/****************************************\n");
 }
 
-void chuta(char chutes[],int* tentativa){
+void chuta(){
 	char chute;
 	printf("\nQual e o seu palpite ?\n");
   	scanf(" %c",&chute);
-  	chutes[*tentativa]=chute;
-  	(*tentativa)++;
+  	chutes[tentativa]=chute;
+  	tentativa++;
 }
 
-int verificaacertos(char chute, char chutes[],int* tentativa){
+int verificaacertos(char chute){
 	int j,achou=0;
 	for(j=0;j<tentativa;j++){
 	  	if(chutes[j]==chute){
@@ -27,37 +30,33 @@ int verificaacertos(char chute, char chutes[],int* tentativa){
 	return achou;
 }
 
-void imprimepalavrasecreta(char palavrasecreta[],char chutes[],int tentativa){
-	int i,achou=0,cont=0;
+void imprimepalavrasecreta(){
+	printf("Você já deu %d chutes\n", tentativa);
+	int i;
 	for(i=0;i<strlen(palavrasecreta);i++){
-  		achou = verificaacertos(palavrasecreta[i],chutes,tentativa);
-  			if(achou){
+  			if(verificaacertos(palavrasecreta[i])){
 				printf("%c ", palavrasecreta[i]);
 				cont++;
 			}else{
 				printf("_ ");
-			}
-			
+			}		
 	}
-	if(cont==strlen(palavrasecreta)){
-		printf("\nVoce acertou a palavra SECRETA!!\n");
-		return 0;
-	}
-	
+	printf("\n");	
+}
+
+
+escolhepalavra(char palavrasecreta[]){
+	sprintf(palavrasecreta, "melancia");
 }
 
 int main() {
-  int i,j,totaltentativas=10,tentativa=0,cont=0,achou;
-  char chute;
-  char palavrasecreta[10];
-  char chutes[totaltentativas];
-  sprintf(palavrasecreta, "uber");
+  escolhepalavra(palavrasecreta);
   abertura();
+
   do{
-  	cont=0;
-  		chuta(chutes,&tentativa);
-  		imprimepalavrasecreta(palavrasecreta,chutes,tentativa);
-  }while(tentativa<totaltentativas);
-  printf("\nVoce nao acertou a palavra secreta");
+  	imprimepalavrasecreta();
+  	chuta();
+  	
+  }while(tentativa<10 || !acertou);
   return 0;
 }
